@@ -1,0 +1,65 @@
+# Model Selection for Agricultural Market Price Prediction
+
+## 1. If Your Data is a Time Series (e.g., daily/weekly/monthly prices)
+
+- **ARIMA/SARIMA**  
+  Good for univariate time series data (only prices over time).
+
+- **Prophet (by Facebook)**  
+  Handles seasonality, holidays, and trend changes well. Works with missing data.
+
+- **LSTM (Long Short-Term Memory Neural Networks)**  
+  Excellent for capturing complex patterns in sequential data. Useful if you have long sequences and multiple features (e.g., price, weather, yield).
+
+## 2. If You Have Tabular Data (multiple features per record)
+
+- **Linear Regression/Polynomial Regression**  
+  Simple, interpretable. Good as a baseline.
+
+- **Random Forest Regression**  
+  Handles non-linear relationships and feature interactions. Robust to outliers.
+
+- **Gradient Boosting Machines (XGBoost, LightGBM, CatBoost)**  
+  Powerful for tabular data with many features (weather, yield, policy events...). Often yields state-of-the-art results.
+
+## 3. If You Want to Use Deep Learning
+
+- **LSTM, GRU, or 1D-CNN**  
+  For time series with multiple features and longer historical context.
+
+- **Hybrid Models**  
+  Combine LSTM/GRU for time series + dense layers for tabular features.
+
+---
+
+## Recommendation
+
+- **Start with ARIMA/Prophet** if your dataset is primarily time series (just prices over time).
+- **Try Random Forest/XGBoost** if you have multiple features (prices, weather, yields, etc.).
+- **Use LSTM** if you want to explore deep learning and have enough data (usually >1,000 records).
+
+---
+
+## Model Selection Factors
+
+- **Amount of Data:** Deep learning (LSTM) requires more data than classical models.
+- **Feature Set:** More features = prefer tree-based models or deep learning.
+- **Interpretability:** Linear regression and tree-based models are easier to explain than deep learning models.
+- **Seasonality:** Prophet is great for seasonal trends.
+
+---
+
+## Example Pipeline
+
+1. **Exploratory Data Analysis**: Plot trends, check seasonality.
+2. **Baseline Model**: Linear regression or ARIMA.
+3. **Advanced Model**: Random Forest, XGBoost, or LSTM/Prophet.
+4. **Model Comparison**: Measure using MAE, RMSE, MAPE.
+
+---
+
+## References
+- [Prophet Documentation](https://facebook.github.io/prophet/)
+- [ARIMA in Statsmodels](https://www.statsmodels.org/stable/generated/statsmodels.tsa.arima.model.ARIMA.html)
+- [XGBoost Documentation](https://xgboost.readthedocs.io/)
+- [LSTM for Time Series](https://machinelearningmastery.com/time-series-prediction-lstm-recurrent-neural-networks-python-keras/)
